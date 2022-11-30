@@ -31,7 +31,7 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry('http://http://registry.docker.localhost/') {
+                    docker.withRegistry('http://registry.docker.localhost') {
                         dockerImage.push()
                     }
                 }
