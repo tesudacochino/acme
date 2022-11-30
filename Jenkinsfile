@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Build') {
             when {
-                expression { env.BRANCH_NAME == 'master' }
+                expression { env.BRANCH_NAME == 'main' }
             }
             steps {
                 script {
@@ -27,11 +27,11 @@ pipeline {
         }
         stage('Push docker image') {
             when {
-                expression { env.BRANCH_NAME == 'master' }
+                expression { env.BRANCH_NAME == 'main' }
             }
             steps {
                 script {
-                    docker.withRegistry('http://http://jenkins.docker.localhost') {
+                    docker.withRegistry('http:/registry:5000') {
                         dockerImage.push()
                     }
                 }
