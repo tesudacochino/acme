@@ -37,7 +37,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
+        stage('Deploy docker') {
             when {
                 expression { env.BRANCH_NAME == 'main' }
             }
