@@ -44,10 +44,9 @@ pipeline {
                 expression { env.BRANCH_NAME == 'main' }
             }
             steps {
-                script {
                      def remote = [name: 'test', host: 'test.test.com', user: 'rao', password: "password123', allowAnyHosts: true]
+                    
                      sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"
-                 }
             }
         }
     }
