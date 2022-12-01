@@ -44,7 +44,7 @@ pipeline {
             steps {
                 script {
                    
-                    sh "ssh -o StrictHostKeyChecking=no root@192.168.21.131 ${dockerRun}"
+                    ssh -o StrictHostKeyChecking=no root@192.168.21.131 ${dockerRun}
                 
                 }
             }
