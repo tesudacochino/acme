@@ -1,19 +1,21 @@
 pipeline {
     agent any
-    stages {
-        stage('Preparations') {
+//    stages {
+//        stage('Preparations') {
+//            steps {
+//                script {
+//                    echo "Preparing!"
+//                }
+//            }
+//        }
+       stage('Test') {
             steps {
                 script {
-                    echo "Preparing!"
+                    def browsers = ['chrome', 'firefox']
+                    for (int i = 0; i < browsers.size(); ++i) {
+                        echo "Testing the ${browsers[i]} browser"
                 }
-            }
-        }
-        stage('Test') {
-            steps {
-                script {
-                    echo "Testing!"
-                }
-            }
+           }
         }
         stage('Build') {
             when {
@@ -43,10 +45,9 @@ pipeline {
             }
             steps {
                 script {
-                   
-                    ssh -o StrictHostKeyChecking=no root@192.168.21.131 ${dockerRun}
-                
-                }
+                     def remote = [name: 'test', host: 'test.test.com', user: 'rao', password: "password123', allowAnyHosts: true]
+                     sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"
+                 }
             }
         }
     }
