@@ -43,10 +43,9 @@ pipeline {
             }
             steps {
                 script {
-                    def dockerRun = 'docker run -p 8080:8080 -d --name my-app kammana/my-app:2.0.0'
-                    sshagent(['dev-server']) {
+                   
                     sh "ssh -o StrictHostKeyChecking=no root@192.168.21.131 ${dockerRun}"
-                    }
+                
                 }
             }
         }
