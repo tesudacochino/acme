@@ -37,11 +37,12 @@ pipeline {
                 expression { env.BRANCH_NAME == 'main' }
             }
             steps {
-                sshagent(credentials : ['use-the-id-from-credential-generated-by-jenkins']) {
-                    sh 'ssh -o StrictHostKeyChecking=no user@hostname.com uptime'
-                    sh 'ssh -v user@hostname.com'
-                    sh 'scp ./source/filename user@hostname.com:/remotehost/target'
-                }
+                echo "end"
+               // sshagent(credentials : ['use-the-id-from-credential-generated-by-jenkins']) {
+               //     sh 'ssh -o StrictHostKeyChecking=no user@hostname.com uptime'
+               //     sh 'ssh -v user@hostname.com'
+               //     sh 'scp ./source/filename user@hostname.com:/remotehost/target'
+               // }
             }
         }
     }
