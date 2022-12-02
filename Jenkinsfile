@@ -44,9 +44,11 @@ pipeline {
                 expression { env.BRANCH_NAME == 'main' }
             }
             steps {
-                     def remote = [name: 'test', host: 'test.test.com', user: 'rao', password: "password123', allowAnyHosts: true]
-                    
-                     sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"
+                sshagent(credentials : ['use-the-id-from-credential-generated-by-jenkins']) {
+                    sh 'ssh -o StrictHostKeyChecking=no user@hostname.com uptime'
+                    sh 'ssh -v user@hostname.com'
+                    sh 'scp ./source/filename user@hostname.com:/remotehost/target'
+                }d
             }
         }
     }
